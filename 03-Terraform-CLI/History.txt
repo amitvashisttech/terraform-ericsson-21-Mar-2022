@@ -1,0 +1,38 @@
+```
+2004  cp -rf 02-Second-Deployment 03-Terraform-CLI
+ 2005  ls
+ 2006  cd 03-Terraform-CLI/
+ 2007  ls
+ 2008  rm -rf terraform.tfstate* 
+ 2009  ls
+ 2010  terraform init 
+ 2011  ls
+ 2012  terraform validate 
+ 2013  vim main.tf 
+ 2014  terraform validate 
+ 2015  vim main.tf 
+ 2016  ls
+ 2017  cat main.tf 
+ 2018  terraform fmt 
+ 2019  cat main.tf 
+ 2020  vim main.tf 
+ 2021  terraform plan 
+ 2022  ls
+ 2023  terraform apply 
+ 2024  terraform plan 
+ 2025  terraform apply
+ 2026  terraform plan -out build-plan 
+ 2027  ls
+ 2028  file build-plan 
+ 2029  cat build-plan 
+ 2030  ls
+ 2031  terraform show build-plan 
+ 2032  ls
+ 2033  terraform apply build-plan 
+ 2034  terraform show 
+ 2035  terraform destroy -out destroy-plan 
+ 2036  terraform plan -destroy -out destroy-plan 
+ 2037  terraform show build-plan 
+ 2038  terraform show destroy-plan 
+ 2039  terraform apply  destroy-plan 
+```
