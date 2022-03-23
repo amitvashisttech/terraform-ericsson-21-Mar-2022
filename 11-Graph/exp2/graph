@@ -1,0 +1,32 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] azurerm_network_interface.example_rg (expand)" [label = "azurerm_network_interface.example_rg", shape = "box"]
+		"[root] azurerm_network_security_group.examplensg (expand)" [label = "azurerm_network_security_group.examplensg", shape = "box"]
+		"[root] azurerm_public_ip.examplepublicip (expand)" [label = "azurerm_public_ip.examplepublicip", shape = "box"]
+		"[root] azurerm_resource_group.example_rg (expand)" [label = "azurerm_resource_group.example_rg", shape = "box"]
+		"[root] azurerm_subnet.external (expand)" [label = "azurerm_subnet.external", shape = "box"]
+		"[root] azurerm_subnet.internal (expand)" [label = "azurerm_subnet.internal", shape = "box"]
+		"[root] azurerm_virtual_machine.example_rg (expand)" [label = "azurerm_virtual_machine.example_rg", shape = "box"]
+		"[root] azurerm_virtual_network.example_rg (expand)" [label = "azurerm_virtual_network.example_rg", shape = "box"]
+		"[root] output.my_public_ip" [label = "output.my_public_ip", shape = "note"]
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]" [label = "provider[\"registry.terraform.io/hashicorp/azurerm\"]", shape = "diamond"]
+		"[root] azurerm_network_interface.example_rg (expand)" -> "[root] azurerm_public_ip.examplepublicip (expand)"
+		"[root] azurerm_network_interface.example_rg (expand)" -> "[root] azurerm_subnet.internal (expand)"
+		"[root] azurerm_network_security_group.examplensg (expand)" -> "[root] azurerm_resource_group.example_rg (expand)"
+		"[root] azurerm_public_ip.examplepublicip (expand)" -> "[root] azurerm_resource_group.example_rg (expand)"
+		"[root] azurerm_resource_group.example_rg (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+		"[root] azurerm_subnet.external (expand)" -> "[root] azurerm_virtual_network.example_rg (expand)"
+		"[root] azurerm_subnet.internal (expand)" -> "[root] azurerm_virtual_network.example_rg (expand)"
+		"[root] azurerm_virtual_machine.example_rg (expand)" -> "[root] azurerm_network_interface.example_rg (expand)"
+		"[root] azurerm_virtual_network.example_rg (expand)" -> "[root] azurerm_resource_group.example_rg (expand)"
+		"[root] output.my_public_ip" -> "[root] azurerm_public_ip.examplepublicip (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_network_security_group.examplensg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_subnet.external (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_virtual_machine.example_rg (expand)"
+		"[root] root" -> "[root] output.my_public_ip"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)"
+	}
+}
+
