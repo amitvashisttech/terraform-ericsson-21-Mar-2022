@@ -4,8 +4,8 @@ resource "azurerm_resource_group" "blue" {
   name     = "terraform-remotetest-RG-${count.index +1}"
   location = "eastus"
   tags = {
-    Owner = "Terraform" 
-    Team  = "Automation Team"
+    Owner = "T" 
+    Team  = "A Team"
     Project = "Terraform Automation"
   }
 }
