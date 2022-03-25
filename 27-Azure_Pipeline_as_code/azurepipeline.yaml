@@ -1,0 +1,52 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTaskV2@2
+  displayName: 'Use Terraform Init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: 'terraform/01-Resource'
+    backendServiceArm: 'Azure Pass - Sponsorship (XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX)'
+    backendAzureRmResourceGroupName: 'tstate'
+    backendAzureRmStorageAccountName: 'tstate5075'
+    backendAzureRmContainerName: 'tstate'
+    backendAzureRmKey: ''
+
+- task: TerraformTaskV2@2
+  displayName: 'Use Terraform Plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: 'terraform/01-Resource'
+    environmentServiceNameAzureRM: 'Azure Pass - Sponsorship (XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX)'
+
+- task: TerraformTaskV2@2
+  displayName: 'Use Terraform Apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: 'terraform/01-Resource'
+    environmentServiceNameAzureRM: 'Azure Pass - Sponsorship (XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX)'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
