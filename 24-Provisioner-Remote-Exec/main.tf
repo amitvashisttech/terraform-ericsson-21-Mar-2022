@@ -65,6 +65,17 @@ resource "azurerm_network_security_group" "myterraformnsg" {
       source_address_prefix      = "*"
       destination_address_prefix = "*"
     }
+   security_rule {
+      name                       = "https"
+      priority                   = 1006
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "443"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
 
     tags = {
         environment = "Terraform Demo"
@@ -180,6 +191,8 @@ provisioner "remote-exec" {
       "sudo apt-get update",
       "sudo apt-get install apache2 -y",
       "sudo service apache2 start",
+      "sudo mkdir -p /var/www/html/Terraform-Images", 
+      "echo 'Hello World' >> /var/www/html/Terraform-Images/hello.html",
     ]
 
   }
